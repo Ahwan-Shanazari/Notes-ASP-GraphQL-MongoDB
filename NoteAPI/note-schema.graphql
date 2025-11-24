@@ -1,0 +1,54 @@
+type Query{
+    note(id: ID!):Note
+    notes: [Note!]
+    theme: [NoteTheme!]!
+}
+
+type NormalNote implements Note{
+    id: ID!
+    title: String
+    text: String!
+    type: NoteType!
+    theme: NoteTheme
+    createDate: Date!
+}
+type CheckedNote implements Note{
+    id: ID!
+    title: String
+    text: String!
+    type: NoteType!
+    createDate: Date!
+    theme: NoteTheme
+    isChecked: Boolean!
+}
+
+type NoteTheme{
+    id: ID!
+    colorR: Int!
+    colorG: Int!
+    colorB: Int!
+    name: String!
+}
+
+enum NoteType{
+    Casual
+    Important
+}
+
+scalar Date
+
+input CreateAndUpdateNoteInput{
+    title: String
+    text: String!
+    type: NoteType! 
+    themeId: ID
+}
+
+interface Note{
+    id: ID!
+    title: String
+    text: String!
+    type: NoteType!
+    createDate: Date!
+    theme: NoteTheme
+}
