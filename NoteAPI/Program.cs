@@ -1,3 +1,5 @@
+using Data.Repositories;
+using Data.Repositories.Interfaces;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,7 @@ builder.Services.AddSingleton<IMongoDatabase>(_ =>
     var client = new MongoClient(builder.Configuration["MongoDbSettings:ConnectionString"]);
     return client.GetDatabase(builder.Configuration["MongoDbSettings:DatabaseName"]);
 });
+builder.Services.AddScoped<INoteRepository, NoteRepository>();
 
 builder.Services.AddGraphQLServer()
     .AddDocumentFromFile("note-schema.graphql");
