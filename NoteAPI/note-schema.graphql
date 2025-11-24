@@ -3,6 +3,12 @@ type Query{
     notes: [Note!]
 }
 
+type Mutation{
+    createNote(note: CreateAndUpdateNoteInput!): Note!
+    updateNote(id: ID!, note: CreateAndUpdateNoteInput!): Boolean!
+    deleteNote(id: ID!): Boolean!
+}
+
 type NormalNote implements Note{
     id: ID!
     title: String
@@ -10,6 +16,7 @@ type NormalNote implements Note{
     type: NoteType!
     theme: NoteTheme
     createDate: Date!
+    tokenCount(size: Int = 4): Int!
 }
 type CheckNote implements Note{
     id: ID!
@@ -19,6 +26,7 @@ type CheckNote implements Note{
     createDate: Date!
     theme: NoteTheme
     isChecked: Boolean!
+    tokenCount(size: Int = 4): Int!
 }
 
 type NoteTheme{
@@ -40,6 +48,7 @@ input CreateAndUpdateNoteInput{
     text: String!
     type: NoteType! 
     theme: ThemeInput
+    isChecked: Boolean
 }
 input ThemeInput{
     colorR: Int!
@@ -55,4 +64,5 @@ interface Note{
     type: NoteType!
     createDate: Date!
     theme: NoteTheme
+    tokenCount(size: Int = 4): Int!
 }

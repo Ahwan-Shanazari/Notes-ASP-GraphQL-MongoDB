@@ -19,6 +19,7 @@ builder.Services.AddScoped<INoteRepository, NoteRepository>();
 builder.Services.AddGraphQLServer()
     .AddDocumentFromFile("note-schema.graphql")
     .BindRuntimeType<Query>("Query")
+    .BindRuntimeType<Mutation>("Mutation")
     .BindRuntimeType<NormalNote>("NormalNote")
     .BindRuntimeType<CheckNote>("CheckNote");
 

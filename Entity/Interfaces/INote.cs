@@ -10,4 +10,5 @@ public interface INote
     NoteType Type { get; }
     DateTime CreateDate { get; }
     NoteTheme? Theme { get; }
+    int TokenCount(int size = 4);
 }

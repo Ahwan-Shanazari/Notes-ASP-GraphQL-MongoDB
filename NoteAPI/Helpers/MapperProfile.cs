@@ -7,7 +7,7 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
-        CreateMap<BaseNote, NormalNote>();
-        CreateMap<BaseNote, CheckNote>();
+        CreateMap<BaseNote, NormalNote>().ReverseMap();
+        CreateMap<BaseNote, CheckNote>().ReverseMap();
     }
 }
